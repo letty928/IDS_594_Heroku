@@ -4,7 +4,6 @@ from PIL import Image
 import numpy as np
 from skimage import transform 
 import tensorflow as tf
-import environ
 
 model = tf.keras.models.load_model('Models/my_save_model.h5')
 #Created a flask application with the name (__name__)
@@ -36,4 +35,4 @@ def pred():
 
 #launches when you run the program 
 if __name__ == '__main__':
-    application.run(host="0.0.0.0", port=environ.get("PORT", 5000))
+    application.run(host="0.0.0.0", port=5000)
