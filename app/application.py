@@ -5,7 +5,7 @@ import numpy as np
 from skimage import transform 
 import tensorflow as tf
 
-model = tf.keras.models.load_model('Models/my_save_model.h5')
+# model = tf.keras.models.load_model('Models/my_save_model.h5')
 #Created a flask application with the name (__name__)
 application = Flask(__name__)
 
@@ -20,19 +20,15 @@ def home():
 
 #Post to use for sending something to the website 
 #Also had to upload image and transform it to match dimensions for the CNN
-@application.route("/pred", methods=["POST"])
-def pred():
-    file = request.files['image']
-    image = Image.open(file.stream)
-    image = np.array(image).astype('float32')/255
-    image = transform.resize(image, (32, 32, 3))
-    image = np.expand_dims(image, axis=0)
-    #Predicting and getting class label 
-    predict = model.predict(image)
-    label = predict.argmax(axis=-1)
-    class_name = class_names[label[0]]
-    return class_name
-
-#launches when you run the program 
-if __name__ == '__main__':
-    application.run(host="0.0.0.0", port=5000)
+# @application.route("/pred", methods=["POST"])
+# def pred():
+#     file = request.files['image']
+#     image = Image.open(file.stream)
+#     image = np.array(image).astype('float32')/255
+#     image = transform.resize(image, (32, 32, 3))
+#     image = np.expand_dims(image, axis=0)
+#     #Predicting and getting class label 
+#     predict = model.predict(image)
+#     label = predict.argmax(axis=-1)
+#     class_name = class_names[label[0]]
+#     return class_name
